@@ -1,0 +1,25 @@
+---
+title: "hw6part1"
+author: "Austin Tetlow"
+date: '2022-04-06'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+load(file='/home/rootuser/Downloads/house_prices.rda')
+```
+
+```{r prep}
+df <- house_prices %>% select(date, state, house_price_index)
+```
+
+## Plots
+
+```{r plot}
+ggplot(data=df) + geom_line(aes(x=date, y=house_price_index), color = "#09557f") + labs(x = "Date", y = "House Price Index", title = "HPI by State") +
+  scale_x_date(minor_breaks = as.Date(c("1980-01-01", "2000-01-01", "2020-01-01")))
+```
